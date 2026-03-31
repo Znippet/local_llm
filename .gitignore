@@ -1,0 +1,4 @@
+models/**/*
+!*config*.json
+
+ovms
