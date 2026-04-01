@@ -1,3 +1,4 @@
+.ovcache
 models/**/*
 !*config*.json
 
