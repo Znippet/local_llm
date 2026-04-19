@@ -1,5 +1,11 @@
 .ovcache
-models/**/*
+models
+.models
 !*config*.json
 
 ovms
+
+# openvino llama generieren -> llama-server.exe
+vcpkg
+openvino_sdk
+llama.cpp
