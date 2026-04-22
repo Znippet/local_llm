@@ -1,0 +1,1 @@
+ovms --model_repository_path .\models --source_model OpenVINO/gpt-oss-20b-int4-ov --task text_generation --target_device GPU --tool_parser gptoss --reasoning_parser gptoss --enable_tool_guided_generation true --rest_port 9000 --cache_dir .ovcache --model_name gpt-oss-20b-int4-ov
