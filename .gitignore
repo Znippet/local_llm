@@ -1,6 +1,5 @@
 .ovcache
 models
-.models
 !*config*.json
 
 ovms
