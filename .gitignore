@@ -1,4 +1,5 @@
 .ovcache
+.claude
 models
 !*config*.json
 

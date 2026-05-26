@@ -5,7 +5,7 @@ ovms.exe ^
   --target_device NPU ^
   --task text_generation ^
   --tool_parser hermes3 ^
-  --cache_dir .ov_cache ^
+  --cache_dir .ovcache ^
   --enable_prefix_caching true ^
   --max_prompt_len 4096 ^
   --rest_port 9000
