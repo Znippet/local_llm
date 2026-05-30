@@ -22,12 +22,24 @@ mkdir .\models
 ```
 
 ```
-ovms --model_repository_path .\models --source_model OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov --task text_generation --target_device GPU --tool_parser qwen3coder --rest_port 9000 --cache_dir .ovcache --model_name Qwen3-Coder-30B-A3B-Instruct-int4-ov --enable_tool_guided_generation true
+ovms --log_level WARNING --model_repository_path c:\LLM\models ^
+  --source_model OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov ^
+  --task text_generation ^
+  --target_device AUTO ^
+  --tool_parser qwen3coder ^
+  --enable_tool_guided_generation false ^
+  --rest_port 9000 ^
+  --cache_dir .ovcache ^
+  --model_name qwen3-coder-30b-a3b-instruct-int4-ov
 ```
+
+Ersetze das jinja-Template, um die Toolbenutzung zu reparieren:
+
+- https://huggingface.co/Qwen/Qwen3.5-35B-A3B/discussions/4
 
 ### Set Up Visual Studio Code
 
-Continue Plugin: https://www.continue.dev/
+Continue Plugin und / oder cli: https://www.continue.dev/
 
 Point Continue plugin to our OpenVINO Model Server instance:
 
@@ -37,10 +49,11 @@ config.yaml:
 name: Local Assistant
 version: 1.0.0
 schema: v1
+
 models:
-  - name: Qwen3-Coder-30B-A3B-Instruct-int4-ov
+  - name: Local qwen3-coder-30b-a3b-instruct-int4-ov
     provider: openai
-    model: Qwen3-Coder-30B-A3B-Instruct-int4-ov
+    model: qwen3-coder-30b-a3b-instruct-int4-ov # muss == --model_name in OVMS sein
     apiKey: dummy
     apiBase: http://localhost:9000/v3
     roles:
@@ -50,12 +63,13 @@ models:
     capabilities:
       - tool_use
 
-context:
-  - provider: code
-  - provider: docs
-  - provider: diff
-  - provider: terminal
-  - provider: problems
-  - provider: folder
-  - provider: codebase
+    # Sampling / Generierungs-Parameter
+    defaultCompletionOptions:
+      temperature: 0.7 # Qwen3-Coder-Empfehlung
+      topP: 0.8 # Qwen3-Coder-Empfehlung
+      maxTokens: 4096
+      # Optional, aber gut für lokale Modelle:
+      topK: 20 # Qwen3-Coder-Empfehlung
+      minP: 0.01 # empfohlen statt 0.0
+
 ```
