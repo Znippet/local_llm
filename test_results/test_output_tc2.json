@@ -1,0 +1,31 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "Ri0CbxgQV",
+            "type": "function",
+            "function": {
+              "name": "list_files",
+              "arguments": "{\"path\":\"/tmp/test_data\",\"pattern\":\"*.txt\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "created": 1781648105,
+  "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
+  "object": "chat.completion",
+  "usage": {
+    "prompt_tokens": 518,
+    "completion_tokens": 34,
+    "total_tokens": 552
+  }
+}
