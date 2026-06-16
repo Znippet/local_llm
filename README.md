@@ -37,6 +37,8 @@ Ersetze das jinja-Template, um die Toolbenutzung zu reparieren:
 
 - https://huggingface.co/Qwen/Qwen3.5-35B-A3B/discussions/4
 
+**Das ist falsch, nicht qwen3 30B, sondern 3.5!** (aber klappt im Gegenssatz zum Original)
+
 ### Set Up Visual Studio Code
 
 Continue Plugin und / oder cli: https://www.continue.dev/
@@ -65,11 +67,19 @@ models:
 
     # Sampling / Generierungs-Parameter
     defaultCompletionOptions:
-      temperature: 0.7 # Qwen3-Coder-Empfehlung
-      topP: 0.8 # Qwen3-Coder-Empfehlung
-      maxTokens: 4096
-      # Optional, aber gut für lokale Modelle:
-      topK: 20 # Qwen3-Coder-Empfehlung
-      minP: 0.01 # empfohlen statt 0.0
+      temperature: 0.6 # ↓ für deterministischere Code-Ausgaben
+      maxTokens: 8192 # ↓ bei Schleifen-Problemen (weniger Kontext = weniger Wiederholungen)
+      minP: 0.05 # ↑ von 0,00 → wichtig für lokale Quantisierung (stärkere Filterung)
+
+
+# Test 2: minP + topP (kombiniert)
+temperature: 0.6
+minP: 0.03
+topP: 0.95
+
+# Test 3: Für maximale Variabilität (weniger Wiederholungen)
+temperature: 0.7
+minP: 0.02
+topP: 0.9
 
 ```
