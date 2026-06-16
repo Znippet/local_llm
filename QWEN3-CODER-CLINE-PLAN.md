@@ -50,7 +50,7 @@
 
 ---
 
-### ⏳ Phase 3: Cline-Optimized Template Design (PENDING)
+### ✅ Phase 3: Cline-Optimized Template Design (COMPLETED)
 **Aufgabe**: Synthesize optimal template for Cline
 
 **Design Criteria**:
@@ -119,7 +119,7 @@
 
 - [x] **Phase 1**: Collect all template sources
 - [x] **Phase 2**: Structural comparison (7 templates side-by-side)
-- [ ] **Phase 3**: Synthesize Cline-optimized template
+- [x] **Phase 3**: Synthesize Cline-optimized template
 - [ ] **Phase 4**: Build test harness + validate
 - [ ] **Phase 5**: Document reasoning + integration guide
 
@@ -140,8 +140,13 @@
 |-------|----------|-----------|------|
 | 1 | Start with Unsloth Official | Universally tested, maintained | 2026-06-16 |
 | 1 | Include Issue #475 constraints | Reliability boost, non-invasive | 2026-06-16 |
-| - | Decide JSON-in-XML vs XML | Test in Phase 4 | Pending |
-| - | Vision tokens: remove or keep? | Decide in Phase 3 | Pending |
+| 3 | Base = Unsloth Official | Guard clauses, widely tested, clean | 2026-06-16 |
+| 3 | Add Issue #475 enhancement | "Do NOT omit <tool_call>" critical fix | 2026-06-16 |
+| 3 | Pure XML (not JSON-in-XML) | Simpler parser, no dual parsing overhead | 2026-06-16 |
+| 3 | Keep render_extra_keys macro | Flexible, type-aware, proven | 2026-06-16 |
+| 3 | Simple message handling | No multi-step state tracking (client-side) | 2026-06-16 |
+| - | JSON-in-XML variant testing | Test in Phase 4 if time permits | Pending |
+| - | Guard clause necessity validation | Measure crash rate in Phase 4 | Pending |
 
 ---
 
