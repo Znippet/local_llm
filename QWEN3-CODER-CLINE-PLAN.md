@@ -76,31 +76,49 @@
 
 ---
 
-### ⏳ Phase 4: Test Harness & Validation (PENDING)
-**Aufgabe**: Create reproducible local test
+### ✅ Phase 4: Test Strategy Design (COMPLETED)
+**Aufgabe**: Create comprehensive test plan for direct Cline CLI validation
 
-**Test Cases**:
-1. **Single tool call**: Model calls one tool exactly once with correct JSON args
-2. **Structured args**: Arguments parse as valid JSON (no malformed strings)
-3. **Tool result follow-up**: Model continues coherently after tool response
-4. **No-tool answer**: Without tool need, model doesn't generate fake tool calls
-5. **Multi-step tool use**: Model chains 2+ tool calls with proper intermediate handling
+**Deliverables**:
+- [x] 5 Test Cases (TC1-TC5) fully specified
+- [x] Direct Cline CLI approach (`cline --json --auto-approve false`)
+- [x] OVMS health-check blocking gate
+- [x] Response parser validation logic
+- [x] Edge-case handling (Q4, Jinja, XML)
+- [x] Execution plan phases (4a Setup, 4b Execution, 4c Edge-Cases)
+- [x] Failure mode recovery table
 
-**Harness Components**:
-- [ ] Python script: HTTP POST to local OpenAI-compatible endpoint
-- [ ] Test payload: System prompt + user message + tool definition
-- [ ] Response parser: Extract `<tool_call>` blocks, validate JSON
-- [ ] Bash script: curl version for CI/automation
-- [ ] Metrics: success rate, parsing time, hallucination detection
-
-**Output**: 
-- `test_harness.py`
-- `test_harness.sh`
-- `test_results.json`
+**Output**: `Phase4-Test-Strategy.md`
 
 ---
 
-### ⏳ Phase 5: Documentation & Justification (PENDING)
+### ⏳ Phase 5: Test Execution & Template Refinement (PENDING)
+**Aufgabe**: Execute Phase 4 tests, analyze failures, refine template
+
+**Execution (Phase 4a/4b/4c)**:
+1. **Phase 4a**: Template deploy, OVMS check, Cline verify, test env setup
+2. **Phase 4b**: Run TC1-TC5 with logging, capture responses
+3. **Phase 4c**: Run edge-case variants (Q4 stress, unicode, long params)
+
+**Analysis & Refinement Loop**:
+1. Parse validation results from Phase 4b/4c
+2. Identify root causes (Q4 artifacts, Jinja issues, etc.)
+3. Adjust `chat_template_cline_optimized.jinja`
+4. Redeploy to OVMS
+5. Re-run failed test cases
+6. Compare before/after metrics
+
+**Deliverables**:
+- [ ] Test execution logs: `test_output_tc#.jsonl` (5 files)
+- [ ] Validation results: `test_result_tc#.json` (5 files)
+- [ ] Summary report: `Phase5-Test-Results.md`
+- [ ] Refined template (if needed): `chat_template_cline_optimized_v2.jinja`
+
+**Output**: Phase 5 complete when all TC pass or root-causes identified for Phase 6
+
+---
+
+### ⏳ Phase 6: Documentation & Justification (PENDING)
 **Aufgabe**: Write comprehensive reasoning document
 
 **Content**:
@@ -109,9 +127,11 @@
 - [ ] Comparison matrix: why chosen template beats alternatives
 - [ ] Client compatibility analysis (Cline vs RooCode vs Continue)
 - [ ] Known limitations and workarounds
+- [ ] Phase 4-5 test results & evidence
+- [ ] Template refinement changelog (if v2 needed)
 - [ ] Integration instructions for OVMS
 
-**Output**: `Phase5-Justification.md`
+**Output**: `Phase6-Justification.md`
 
 ---
 
@@ -120,8 +140,9 @@
 - [x] **Phase 1**: Collect all template sources
 - [x] **Phase 2**: Structural comparison (7 templates side-by-side)
 - [x] **Phase 3**: Synthesize Cline-optimized template
-- [ ] **Phase 4**: Build test harness + validate
-- [ ] **Phase 5**: Document reasoning + integration guide
+- [x] **Phase 4**: Test strategy design (direct Cline CLI approach)
+- [ ] **Phase 5**: Test execution & template refinement (in progress)
+- [ ] **Phase 6**: Documentation & justification
 
 ---
 
@@ -173,9 +194,10 @@
 | 1 | Data collection | ✅ Complete |
 | 2 | Analysis | ~30-45 min |
 | 3 | Template synthesis | ~45-60 min |
-| 4 | Test harness | ~30-45 min |
-| 5 | Documentation | ~20-30 min |
-| **Total** | | **~3-4 hours** |
+| 4 | Test strategy design | ✅ Complete |
+| 5 | Test execution (Phase 4a/4b/4c) + refinement | ~90-120 min |
+| 6 | Documentation + justification | ~30-45 min |
+| **Total** | | **~4-5 hours** |
 
 ---
 
