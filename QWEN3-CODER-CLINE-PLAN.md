@@ -119,20 +119,19 @@
 
 ---
 
-### ⏳ Phase 6: Documentation & Justification (PENDING)
-**Aufgabe**: Write comprehensive reasoning document
+### ⏳ Phase 6: Refinement — Cleanup, Test Extension (PENDING)
+**Aufgabe**: Reorganize & extend tests, prepare for documentation
 
-**Content**:
-- [ ] Why JSON-in-XML (or pure XML) for Cline specifically
-- [ ] Why Unsloth base + mostlygeek/Issue #475 enhancements
-- [ ] Comparison matrix: why chosen template beats alternatives
-- [ ] Client compatibility analysis (Cline vs RooCode vs Continue)
-- [ ] Known limitations and workarounds
-- [ ] Phase 4-5 test results & evidence
-- [ ] Template refinement changelog (if v2 needed)
-- [ ] Integration instructions for OVMS
+**Deliverables**:
+- [ ] Verzeichnis-Struktur (templates/, tests/, scripts/)
+- [ ] Tests erweitert: TC6-TC9 (execute_command, search_files, web_search, list_directory_tree)
+- [ ] `templates/TEMPLATE-CHANGELOG.md`
+- [ ] `tests/README-TESTS.md`
+- [ ] `scripts/deploy_template.ps1`
+- [ ] `README.md` erweitert
+- [ ] All TC1-TC9 PASS (5+4)
 
-**Output**: `Phase6-Justification.md`
+**Output**: Phase 6 complete → Ready for Phase 7 Documentation
 
 ---
 
@@ -143,7 +142,8 @@
 - [x] **Phase 3**: Synthesize Cline-optimized template
 - [x] **Phase 4**: Test strategy design (direct Cline CLI approach)
 - [x] **Phase 5**: Test execution & template refinement (5/5 PASS)
-- [ ] **Phase 6**: Documentation & justification (PENDING)
+- [ ] **Phase 6**: Refinement — Cleanup, Test Extension (PENDING)
+- [ ] **Phase 7**: Documentation & Justification (PENDING)
 
 ---
 
