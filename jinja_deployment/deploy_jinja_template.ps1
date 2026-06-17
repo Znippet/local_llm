@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("v1.0", "v2.0", "v2.1", "v2.2", "v2.3")]
+    [ValidateSet("v1.0", "v2.0", "v2.1", "v2.2", "v2.3", "v2.4")]
     [string]$Version = "v1.0",
     [string]$OVMSModelDir = "C:\LLM\models\OpenVINO\Qwen3-Coder-30B-A3B-Instruct-int4-ov",
     [bool]$RestartOVMS = $false
@@ -13,7 +13,7 @@ Deploy Jinja-Template zu OVMS Modell-Verzeichnis
 Kopiert selektierte Jinja-Template-Version zu OVMS, mit Backup der aktuellen Template.
 
 .PARAMETER Version
-Template-Version zu deployen: v1.0 (File Ops), v2.0 (Extended Tools), v2.1 (Tool Sequencing), v2.2 (Temperature Tuning), or v2.3 (Min-P Testing)
+Template-Version zu deployen: v1.0 (File Ops), v2.0 (Extended Tools), v2.1 (Tool Sequencing), v2.2 (Temperature Tuning), v2.3 (Min-P Testing), or v2.4 (Top-P Tuning)
 
 .PARAMETER OVMSModelDir
 OVMS Model-Verzeichnis für Qwen3-Coder

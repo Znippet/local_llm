@@ -7,13 +7,14 @@
 **Phase 6 Complete**: 2026-06-17  
 **Phase 6.5 Complete**: 2026-06-17 (Audit)  
 **Phase 7 Complete**: 2026-06-17 (Refinement & tojson optimization)  
-**Phase 8b Complete**: 2026-06-17 (Continuous Enhancement: Iterations 1-4)
+**Phase 8b Complete**: 2026-06-17 (Continuous Enhancement: Iterations 1-5)
   - Iteration 1: Baseline (v2.0 established)
   - Iteration 2: Few-shot examples (v2.1, improved sequencing 0→2/3)
   - Iteration 3: Temperature tuning (v2.2 0.7→0.3, zero artifacts)
   - Iteration 4: Min-p testing (v2.3, regression detected, REVERT)
+  - Iteration 5: Top-P tuning (v2.4 0.8→0.9, regression detected, REVERT)
 **Recommendation**: Deploy v2.2 (Temperature Tuning) to Production
-**Status**: Phase 8b COMPLETE → v2.2 OPTIMAL, ready for production
+**Status**: Phase 8b COMPLETE (Iterations 1-5) → v2.2 OPTIMAL, ready for production
 
 ---
 
