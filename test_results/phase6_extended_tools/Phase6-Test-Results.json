@@ -22,8 +22,7 @@
         "name": "search_files",
         "args": {
           "pattern": "TODO",
-          "path": "C:\\LLM",
-          "recursive": true
+          "path": "C:\\LLM"
         }
       }
     ],

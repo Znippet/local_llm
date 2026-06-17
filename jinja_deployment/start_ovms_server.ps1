@@ -59,17 +59,25 @@ Write-Host "  Cache Dir: $CacheDir"
 Write-Host ""
 
 # Build command line with proper formatting (like .bat file)
+# NOTE: Use 30B by default (35B is incompatible multi-modal model)
+# To use 35B, set $env:OVMS_MODEL environment variable
+$ModelName = if ($env:OVMS_MODEL) {
+    $env:OVMS_MODEL
+} else {
+    "Qwen3-Coder-30B-A3B-Instruct-int4-ov"  # Default to 30B (text-only, compatible)
+}
+
 $args = @(
     "--log_level WARNING",
     "--model_repository_path c:\LLM\models",
-    "--source_model OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov",
+    "--source_model OpenVINO/$ModelName",
     "--task text_generation",
     "--target_device AUTO",
     "--tool_parser qwen3coder",
     "--enable_tool_guided_generation false",
     "--rest_port 9000",
     "--cache_dir .ovcache",
-    "--model_name qwen3-coder-30b-a3b-instruct-int4-ov"
+    "--model_name $ModelName"
 )
 
 # Start OVMS with arguments
@@ -90,10 +98,11 @@ Start-Sleep -Seconds 15
 
 # Validate startup
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:9000/v3/models/qwen3-coder-30b-a3b-instruct-int4-ov" `
+    $response = Invoke-WebRequest -Uri "http://localhost:9000/v3/models/$ModelName" `
         -TimeoutSec 5 -ErrorAction SilentlyContinue
     if ($response.StatusCode -eq 200) {
         Write-Host "✓ OVMS API responding" -ForegroundColor Green
+        Write-Host "  Model: $ModelName" -ForegroundColor Green
         Write-Host ""
         Write-Host "=" * 70
         Write-Host "Ready for testing" -ForegroundColor Green

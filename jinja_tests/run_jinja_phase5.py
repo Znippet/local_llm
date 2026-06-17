@@ -14,7 +14,7 @@ from pathlib import Path
 
 # OVMS endpoint
 OVMS_BASE = "http://localhost:9000"
-MODEL = "qwen3-coder-30b-a3b-instruct-int4-ov"
+MODEL = "Qwen3-Coder-30B-A3B-Instruct-int4-ov"
 
 # Test output directory
 TEST_DIR = Path("C:\\LLM\\test_results")

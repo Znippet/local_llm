@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 OVMS_BASE = "http://localhost:9000"
-MODEL = "qwen3-coder-30b-a3b-instruct-int4-ov"
+MODEL = "Qwen3-Coder-30B-A3B-Instruct-int4-ov"
 TEST_DIR = Path("C:\\LLM\\test_results\\phase6_extended")
 TEST_DIR.mkdir(parents=True, exist_ok=True)
 

@@ -5,27 +5,27 @@
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "I'll search for 'TODO' comments in the C:\\LLM directory using the search_files tool.\n",
+        "content": "",
         "role": "assistant",
         "tool_calls": [
           {
-            "id": "rGal0aVq0",
+            "id": "j7MTtneZj",
             "type": "function",
             "function": {
               "name": "search_files",
-              "arguments": "{\"pattern\":\"TODO\",\"path\":\"C:\\\\LLM\",\"recursive\":true}"
+              "arguments": "{\"pattern\":\"TODO\",\"path\":\"C:\\\\LLM\"}"
             }
           }
         ]
       }
     }
   ],
-  "created": 1781691737,
-  "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
+  "created": 1781725091,
+  "model": "Qwen3-Coder-30B-A3B-Instruct-int4-ov",
   "object": "chat.completion",
   "usage": {
-    "prompt_tokens": 851,
-    "completion_tokens": 65,
-    "total_tokens": 916
+    "prompt_tokens": 1566,
+    "completion_tokens": 34,
+    "total_tokens": 1600
   }
 }

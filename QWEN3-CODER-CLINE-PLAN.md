@@ -215,6 +215,20 @@ Orchestrator (main thread, persistent)
 2. Orchestrator: Speichert Checkliste in `Phase8-Checklist.md`
 
 **Phase 8b: Iterative Enhancement** (Sequential Loop, Researcher via SendMessage warm halten)
+
+**Phase 8b Iteration 1 Results** ✅ COMPLETED (2026-06-17):
+- **Task**: Deploy Qwen3-Coder-35B to test tool-sequencing improvement
+- **Outcome**: REVERT - Model architecture incompatible
+- **Key Finding**: 
+  - Qwen3.6-35B-A3B found (multi-modal, vision+text) - NOT Qwen3-Coder-35B
+  - OVMS expects single unified model (openvino_model.xml)
+  - 35B has multi-component architecture (language_model + embeddings + vision components)
+  - Qwen3-Coder line stops at 30B; no 35B variant exists in that family
+- **Recommendation**: Escalate to Candidate 6 (client-side prompt optimization)
+- **Report**: `Phase8-Iteration-1-Report.md` (comprehensive analysis + model family matrix)
+
+**Next: Phase 8b Iteration 2 Strategy**
+
 ```
 for each checklist_item in Phase8-Checklist.md:
   

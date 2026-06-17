@@ -1,0 +1,47 @@
+======================================================================
+Phase 6.5: Few-Shot Example Validation
+======================================================================
+
+Test: Do few-shot examples in v2.1 improve multi-step sequencing?
+(These tests validate the 3 concrete examples added to the template)
+[OK] OVMS responsive
+
+
+Running Few-Shot Tests...
+======================================================================
+
+[TEST 1] Search and Read Pattern
+  Task: Find TODO comments then read one
+
+[TEST 2] List Directory and Execute Pattern
+  Task: List tests directory, then execute pytest
+
+[TEST 3] Read and Write Pattern
+  Task: Understand file then write it back modified
+
+======================================================================
+Few-Shot Sequencing Test Results
+======================================================================
+
+[FAIL] search_and_read
+  Expected: search_files -> read_file
+  Actual:   search_files
+  Reason:   [OK] search_files called first, but read_file not called second (model stopped after search)
+
+[PASS] list_and_execute
+  Expected: list_directory_tree -> execute_command
+  Actual:   list_directory_tree -> execute_command
+  Reason:   [OK] list_directory_tree called first, [OK] execute_command called second
+
+[PASS] read_and_write
+  Expected: read_file
+  Actual:   read_file
+  Reason:   [OK] read_file called first (following few-shot example)
+
+======================================================================
+Total: 2/3 PASS
+======================================================================
+
+Results saved: C:\LLM\test_results\phase6_5_few_shot\Phase6-5-Few-Shot-Results.json
+
+[OK] Success: At least 1/3 tests PASS (improved from 0/3 baseline)

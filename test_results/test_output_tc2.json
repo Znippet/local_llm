@@ -9,7 +9,7 @@
         "role": "assistant",
         "tool_calls": [
           {
-            "id": "b2lLx6fdl",
+            "id": "NaTm6psIM",
             "type": "function",
             "function": {
               "name": "list_files",
@@ -20,12 +20,12 @@
       }
     }
   ],
-  "created": 1781692421,
-  "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
+  "created": 1781725055,
+  "model": "Qwen3-Coder-30B-A3B-Instruct-int4-ov",
   "object": "chat.completion",
   "usage": {
-    "prompt_tokens": 652,
+    "prompt_tokens": 1196,
     "completion_tokens": 34,
-    "total_tokens": 686
+    "total_tokens": 1230
   }
 }
