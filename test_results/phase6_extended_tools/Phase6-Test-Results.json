@@ -1,0 +1,61 @@
+[
+  {
+    "tc": 6,
+    "status": "PASS",
+    "errors": [],
+    "tool_calls": [
+      {
+        "name": "execute_command",
+        "args": {
+          "command": "echo hello"
+        }
+      }
+    ],
+    "has_tool_call": true
+  },
+  {
+    "tc": 7,
+    "status": "PASS",
+    "errors": [],
+    "tool_calls": [
+      {
+        "name": "search_files",
+        "args": {
+          "pattern": "TODO",
+          "path": "C:\\\\LLM",
+          "recursive": true
+        }
+      }
+    ],
+    "has_tool_call": true
+  },
+  {
+    "tc": 8,
+    "status": "PASS",
+    "errors": [],
+    "tool_calls": [
+      {
+        "name": "web_search",
+        "args": {
+          "query": "Qwen3-Coder documentation"
+        }
+      }
+    ],
+    "has_tool_call": true
+  },
+  {
+    "tc": 9,
+    "status": "PASS",
+    "errors": [],
+    "tool_calls": [
+      {
+        "name": "list_directory_tree",
+        "args": {
+          "path": "C:\\LLM",
+          "max_depth": 2
+        }
+      }
+    ],
+    "has_tool_call": true
+  }
+]

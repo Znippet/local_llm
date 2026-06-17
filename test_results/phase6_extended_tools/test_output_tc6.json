@@ -1,0 +1,31 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "bDiJcjBxA",
+            "type": "function",
+            "function": {
+              "name": "execute_command",
+              "arguments": "{\"command\":\"echo hello\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "created": 1781686871,
+  "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
+  "object": "chat.completion",
+  "usage": {
+    "prompt_tokens": 961,
+    "completion_tokens": 24,
+    "total_tokens": 985
+  }
+}

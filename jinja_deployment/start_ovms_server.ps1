@@ -13,7 +13,7 @@ Prüft ob bereits laufen (Port 9000).
 $ErrorActionPreference = "Stop"
 
 $PidFile = "C:\LLM\.ovms_pid"
-$OvmsExe = "C:\LLM\ovms\bin\ovms.exe"
+$OvmsExe = "C:\LLM\ovms\ovms.exe"
 $ModelDir = "C:\LLM\models"
 $CacheDir = "C:\LLM\.ovcache"
 
@@ -58,21 +58,24 @@ Write-Host "  Model Dir: $ModelDir"
 Write-Host "  Cache Dir: $CacheDir"
 Write-Host ""
 
+# Build command line with proper formatting (like .bat file)
+$args = @(
+    "--log_level WARNING",
+    "--model_repository_path c:\LLM\models",
+    "--source_model OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov",
+    "--task text_generation",
+    "--target_device AUTO",
+    "--tool_parser qwen3coder",
+    "--enable_tool_guided_generation false",
+    "--rest_port 9000",
+    "--cache_dir .ovcache",
+    "--model_name qwen3-coder-30b-a3b-instruct-int4-ov"
+)
+
 # Start OVMS with arguments
 $process = Start-Process `
     -FilePath $OvmsExe `
-    -ArgumentList @(
-        "--log_level WARNING",
-        "--model_repository_path", $ModelDir,
-        "--source_model OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov",
-        "--task text_generation",
-        "--target_device AUTO",
-        "--tool_parser qwen3coder",
-        "--enable_tool_guided_generation false",
-        "--rest_port 9000",
-        "--cache_dir", $CacheDir,
-        "--model_name qwen3-coder-30b-a3b-instruct-int4-ov"
-    ) `
+    -ArgumentList $args `
     -PassThru `
     -NoNewWindow
 

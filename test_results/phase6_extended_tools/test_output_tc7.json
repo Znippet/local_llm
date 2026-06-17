@@ -1,0 +1,31 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "I'll help you search for 'TODO' comments in the C:\\LLM directory. Let me use the search_files tool to accomplish this.\n",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "AP1CHRUAM",
+            "type": "function",
+            "function": {
+              "name": "search_files",
+              "arguments": "{\"pattern\":\"TODO\",\"path\":\"C:\\\\\\\\LLM\",\"recursive\":true}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "created": 1781686893,
+  "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
+  "object": "chat.completion",
+  "usage": {
+    "prompt_tokens": 963,
+    "completion_tokens": 73,
+    "total_tokens": 1036
+  }
+}

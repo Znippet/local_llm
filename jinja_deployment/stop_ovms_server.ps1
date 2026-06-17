@@ -30,25 +30,25 @@ if (-not (Test-Path $PidFile)) {
         Write-Host ""
         Write-Host "Found OVMS process (PID: $($ovms.Id))"
         Write-Host "Attempting to stop..."
-        $PID = $ovms.Id
+        $ProcessId = $ovms.Id
     } else {
         Write-Host ""
         Write-Host "No OVMS process running"
         exit 0
     }
 } else {
-    $PID = (Get-Content $PidFile -Encoding UTF8).Trim()
-    if (-not $PID) {
+    $ProcessId = (Get-Content $PidFile -Encoding UTF8).Trim()
+    if (-not $ProcessId) {
         Write-Host "❌ PID file is empty: $PidFile" -ForegroundColor Red
         exit 1
     }
-    Write-Host "PID from file: $PID"
+    Write-Host "PID from file: $ProcessId"
 }
 
 # Check if process exists
-$process = Get-Process -Id $PID -ErrorAction SilentlyContinue
+$process = Get-Process -Id $ProcessId -ErrorAction SilentlyContinue
 if (-not $process) {
-    Write-Host "⚠️  Process not found (PID: $PID)" -ForegroundColor Yellow
+    Write-Host "⚠️  Process not found (PID: $ProcessId)" -ForegroundColor Yellow
     Write-Host "   Already stopped? Cleaning up PID file..."
     if (Test-Path $PidFile) {
         Remove-Item $PidFile -Force -ErrorAction SilentlyContinue
@@ -56,7 +56,7 @@ if (-not $process) {
     exit 0
 }
 
-Write-Host "Stopping OVMS (PID: $PID)..."
+Write-Host "Stopping OVMS (PID: $ProcessId)..."
 Write-Host ""
 
 # Stop process gracefully first
@@ -64,17 +64,17 @@ $process.CloseMainWindow() | Out-Null
 Start-Sleep -Seconds 2
 
 # Check if still running
-$process = Get-Process -Id $PID -ErrorAction SilentlyContinue
+$process = Get-Process -Id $ProcessId -ErrorAction SilentlyContinue
 if ($process) {
     Write-Host "Process still running, forcing termination..."
-    Stop-Process -Id $PID -Force -ErrorAction SilentlyContinue
+    Stop-Process -Id $ProcessId -Force -ErrorAction SilentlyContinue
     Start-Sleep -Seconds 1
 }
 
 # Validate stopped
-$process = Get-Process -Id $PID -ErrorAction SilentlyContinue
+$process = Get-Process -Id $ProcessId -ErrorAction SilentlyContinue
 if ($process) {
-    Write-Host "❌ Process still running (PID: $PID)" -ForegroundColor Red
+    Write-Host "❌ Process still running (PID: $ProcessId)" -ForegroundColor Red
     exit 1
 } else {
     Write-Host "✓ OVMS stopped successfully" -ForegroundColor Green
