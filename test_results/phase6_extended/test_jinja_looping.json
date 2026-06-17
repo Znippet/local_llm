@@ -1,0 +1,292 @@
+[
+  {
+    "user_prompt": "Find all Python files. Keep searching until 100 files found.",
+    "turns": [
+      {
+        "turn": 0,
+        "tool_calls": [
+          {
+            "name": "search_files",
+            "args": {
+              "pattern": "\\.py$",
+              "path": ".",
+              "recursive": true
+            }
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "tool_calls": [
+          {
+            "name": "list_directory_tree",
+            "args": {
+              "path": ".",
+              "max_depth": 5
+            }
+          }
+        ]
+      },
+      {
+        "turn": 2,
+        "tool_calls": [
+          {
+            "name": "web_search",
+            "args": {
+              "query": "how to find all python files recursively command line"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 3,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "find . -name \"*.py\" -type f | head -n 100"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 4,
+        "tool_calls": [
+          {
+            "name": "list_files",
+            "args": {
+              "path": "."
+            }
+          }
+        ]
+      },
+      {
+        "turn": 5,
+        "tool_calls": [
+          {
+            "name": "search_files",
+            "args": {
+              "pattern": "\\.py$",
+              "path": ".",
+              "recursive": true
+            }
+          }
+        ]
+      },
+      {
+        "turn": 6,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "find . -type f -name \"*.py\" | wc -l"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 7,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "rg -g \"*.py\" . | head -n 100"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 8,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "locate \"*.py\" | head -n 100"
+            }
+          }
+        ]
+      }
+    ],
+    "tool_call_history": [
+      "search_files({\"path\": \".\", \"pattern\": \"\\\\.py$\", \"recursive\": true})",
+      "list_directory_tree({\"max_depth\": 5, \"path\": \".\"})",
+      "web_search({\"query\": \"how to find all python files recursively command line\"})",
+      "execute_command({\"command\": \"find . -name \\\"*.py\\\" -type f | head -n 100\"})",
+      "list_files({\"path\": \".\"})",
+      "search_files({\"path\": \".\", \"pattern\": \"\\\\.py$\", \"recursive\": true})",
+      "execute_command({\"command\": \"find . -type f -name \\\"*.py\\\" | wc -l\"})",
+      "execute_command({\"command\": \"rg -g \\\"*.py\\\" . | head -n 100\"})",
+      "execute_command({\"command\": \"locate \\\"*.py\\\" | head -n 100\"})"
+    ],
+    "loop_detected": true,
+    "loop_reason": "Long conversation (8 turns)"
+  },
+  {
+    "user_prompt": "Run echo test command repeatedly to verify",
+    "turns": [
+      {
+        "turn": 0,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "echo test"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "for i in {1..5}; do echo \"test $i\"; done"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 2,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "echo \"test\" && echo \"test\" && echo \"test\" && echo \"test\" && echo \"test\""
+            }
+          }
+        ]
+      },
+      {
+        "turn": 3,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "for i in {1..5}; do echo \"test\"; done"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 4,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "printf 'test\\n%.0s' {1..5}"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 5,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "echo \"Running echo test command repeatedly:\"\necho \"test\"\necho \"test\" \necho \"test\"\necho \"test\"\necho \"test\""
+            }
+          }
+        ]
+      },
+      {
+        "turn": 6,
+        "tool_calls": [
+          {
+            "name": "write_file",
+            "args": {
+              "path": "repeated_echo.sh",
+              "content": "#!/bin/bash\necho \"Running echo test command repeatedly:\"\nfor i in {1..5}; do\n    echo \"test\"\ndone"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 7,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "chmod +x repeated_echo.sh && ./repeated_echo.sh"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 8,
+        "tool_calls": [
+          {
+            "name": "execute_command",
+            "args": {
+              "command": "echo \"test\" && sleep 0.1 && echo \"test\" && sleep 0.1 && echo \"test\" && sleep 0.1 && echo \"test\" && sleep 0.1 && echo \"test\""
+            }
+          }
+        ]
+      }
+    ],
+    "tool_call_history": [
+      "execute_command({\"command\": \"echo test\"})",
+      "execute_command({\"command\": \"for i in {1..5}; do echo \\\"test $i\\\"; done\"})",
+      "execute_command({\"command\": \"echo \\\"test\\\" && echo \\\"test\\\" && echo \\\"test\\\" && echo \\\"test\\\" && echo \\\"test\\\"\"})",
+      "execute_command({\"command\": \"for i in {1..5}; do echo \\\"test\\\"; done\"})",
+      "execute_command({\"command\": \"printf 'test\\\\n%.0s' {1..5}\"})",
+      "execute_command({\"command\": \"echo \\\"Running echo test command repeatedly:\\\"\\necho \\\"test\\\"\\necho \\\"test\\\" \\necho \\\"test\\\"\\necho \\\"test\\\"\\necho \\\"test\\\"\"})",
+      "write_file({\"content\": \"#!/bin/bash\\necho \\\"Running echo test command repeatedly:\\\"\\nfor i in {1..5}; do\\n    echo \\\"test\\\"\\ndone\", \"path\": \"repeated_echo.sh\"})",
+      "execute_command({\"command\": \"chmod +x repeated_echo.sh && ./repeated_echo.sh\"})",
+      "execute_command({\"command\": \"echo \\\"test\\\" && sleep 0.1 && echo \\\"test\\\" && sleep 0.1 && echo \\\"test\\\" && sleep 0.1 && echo \\\"test\\\" && sleep 0.1 && echo \\\"test\\\"\"})"
+    ],
+    "loop_detected": true,
+    "loop_reason": "Long conversation (8 turns)"
+  },
+  {
+    "user_prompt": "(1) read file, (2) add comment, (3) verify",
+    "turns": [
+      {
+        "turn": 0,
+        "tool_calls": [
+          {
+            "name": "read_file",
+            "args": {
+              "path": "example.txt"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "tool_calls": [
+          {
+            "name": "write_file",
+            "args": {
+              "path": "example.txt",
+              "content": "This is a sample file."
+            }
+          }
+        ]
+      },
+      {
+        "turn": 2,
+        "tool_calls": [
+          {
+            "name": "read_file",
+            "args": {
+              "path": "example.txt"
+            }
+          }
+        ]
+      },
+      {
+        "turn": 3,
+        "tool_calls": []
+      }
+    ],
+    "tool_call_history": [
+      "read_file({\"path\": \"example.txt\"})",
+      "write_file({\"content\": \"This is a sample file.\", \"path\": \"example.txt\"})",
+      "read_file({\"path\": \"example.txt\"})"
+    ],
+    "loop_detected": false,
+    "loop_reason": null
+  }
+]

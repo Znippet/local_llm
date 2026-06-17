@@ -6,7 +6,8 @@
 **Phase 5 Complete**: 2026-06-17  
 **Phase 6 Complete**: 2026-06-17  
 **Phase 6.5 Complete**: 2026-06-17 (Audit)  
-**Status**: Phase 6.5 AUDIT COMPLETE → Phase 7 REFINEMENT PENDING
+**Phase 7 Complete**: 2026-06-17 (Refinement & tojson optimization)  
+**Status**: Phase 7 REFINEMENT COMPLETE → Phase 8 CONTINUOUS ENHANCEMENT PENDING
 
 ---
 
@@ -140,6 +141,162 @@
 
 ---
 
+### ✅ Phase 7: Template Refinement & Re-Testing (COMPLETE)
+**Aufgabe**: Improve template robustness, implement tojson-based tool rendering, validate edge-cases
+
+**Key Improvements**:
+- ✅ Replaced manual XML (30 lines) with tojson (1 line)
+- ✅ Enhanced IMPORTANT section with explicit tool sequencing rules
+- ✅ Fixed deploy script parameter bug ([switch] → [bool])
+- ✅ Standardized template naming convention
+
+**Test Results**:
+- Phase 5: 5/5 PASS (v2.0, no regressions)
+- Phase 6: 4/4 PASS (v2.0, no regressions)
+- Phase 6.5 Realistic: FAIL (tool sequencing limitation persists)
+- Phase 6.5 Error Handling: 3/4 PASS
+- Phase 6.5 Looping: Not completed (infrastructure issues)
+
+**Critical Finding**: Tool-sequencing problem is NOT template-related but likely **model capability limitation** (Qwen3-Coder-30B). Both v1.0 and v2.0 fail identical sequencing tests equally.
+
+**Deliverables**:
+- [x] `chat_template_cline_optimized_v2.0.jinja` (tojson + enhanced prompting)
+- [x] `Phase7-Refinement-Results-FINAL.md` (comprehensive analysis)
+- [x] Deploy script fixes
+
+**Output**: v2.0 ready for Phase 8 with documented limitations (single-tool operations reliable, multi-step sequences unreliable)
+
+---
+
+### ⏳ Phase 8: Continuous Template Enhancement — Multi-Agent Orchestration Loop
+**Ziel**: Kontinuierliche Optimierung des Jinja-Templates durch strukturiertes Multi-Agent-System mit einem Orchestrator & langlebigem Researcher
+
+**Architektur**:
+```
+Orchestrator (main thread, persistent)
+    │
+    ├─ 1. LONG-RUNNING Researcher (SendMessage, persistent agent)
+    │      Läuft über die gesamte Phase 8
+    │      Kann jederzeit neue Analyseanfragen erhalten
+    │      Hält Kontext über alle Iterationen
+    │      Output: Iterative Updates zu `Phase8-Jinja-Possibilities.md`
+    │
+    └─ 2. Sequential Loop (Orchestrator koordiniert):
+         └─ For each checklist item:
+              ├─ Orchestrator fragt Researcher: "Checke ob diese Änderung X mit Y compatible ist"
+              ├─ Researcher antwortet mit Analyse/Tipps
+              │
+              ├─ New Subagent: Programmer (Fresh context, ephemeral)
+              │    Implementiert Jinja-Änderung
+              │    Führt TC1-TC9 aus
+              │    Dokumentiert Fort-/Rückschritte
+              │    Output: `Phase8-Iteration-N-Report.md`
+              │
+              └─ Orchestrator:
+                   Liest Programmer-Report
+                   Fragt Researcher: "Warum hat Iteration N so performt? Welche Patterns sieht du?"
+                   Researcher gibt Pattern-Analyse zurück
+                   Orchestrator schreibt `Phase8-Lessons-Learned-N.md`
+                   Passt Checkliste an für Iteration N+1
+```
+
+**Workflow** (Sequenziell, Researcher warm halten):
+
+**Phase 8a: Research Initialization** (Researcher Agent startet, bleibt warm)
+1. Orchestrator: `Agent(type: explore, prompt: "Initial Jinja research...")`
+   - Researcher erhält Task:
+     - Analysiere alle 7 Template-Variationen (Phase 1)
+     - Qwen 30B A3B vs. 35B vs. weitere Varianten
+     - Online Best-Practices (Hugging Face, GitHub Issues, LLM Communities)
+     - Performance Patterns (context, latency, quality)
+   - Output: `Phase8-Jinja-Possibilities.md` + Priorisierte Checkliste (Likelihood/Impact Matrix)
+   - **Agent-ID merken**: Für SendMessage-Loop
+
+2. Orchestrator: Speichert Checkliste in `Phase8-Checklist.md`
+
+**Phase 8b: Iterative Enhancement** (Sequential Loop, Researcher via SendMessage warm halten)
+```
+for each checklist_item in Phase8-Checklist.md:
+  
+  1. Orchestrator: SendMessage(to: researcher_id)
+     "Ich starte Iteration N mit Änderung X.
+      Checkliste-Context: (previous iterations summary)
+      Tipps bevor ich den Programmer starte?"
+  
+  2. Researcher: antwortet via SendMessage (hält Kontext)
+     - Pre-flight Checks
+     - Compatibility Warnings
+     - Suggested Test Focus
+     - Speichert Update zu Phase8-Jinja-Possibilities.md
+  
+  3. Orchestrator: liest Researcher-Response
+     → startet Fresh Programmer Agent
+     Input: 
+       - Current template
+       - Checklist item N
+       - Researcher Pre-Flight Tips
+       - Phase8-Lessons-Learned-[1..N-1].md (kumulative Learnings)
+  
+  4. Programmer Agent: (ephemeral, fresh context)
+     - Implementiert Jinja-Änderung
+     - Führt TC1-TC9 aus
+     - Schreibt Phase8-Iteration-N-Report.md
+     - Terminiert (Kontext wird freigegeben)
+  
+  5. Orchestrator: liest Iteration-N-Report
+     → SendMessage(to: researcher_id)
+     "Iteration N Complete. Results:
+      (metrics, pass/fail, diagnostics)
+      Patterns? Prognose für N+1?"
+  
+  6. Researcher: antwortet via SendMessage (warmer Kontext!)
+     - Pattern Recognition über alle bisherigen Iterationen
+     - Root-Cause Analysis (warum +/- Ergebnisse)
+     - Prediction für nächste Iteration
+     - Speichert Update zu Phase8-Jinja-Possibilities.md
+  
+  7. Orchestrator: schreibt Phase8-Lessons-Learned-N.md
+     (basierend auf Researcher-Pattern-Analyse)
+     - Extrahiert ✅ Was funktioniert
+     - Dokumentiert ❌ Was regressed
+     - Passt Checkliste für N+1 an
+```
+
+**Phase 8c: Consolidation**
+- Finaler SendMessage to Researcher:
+  "Alle Iterationen Complete. Synthesize deine Learnings:
+   - Generelle Patterns für Qwen3-Coder Jinja-Templates?
+   - Was hätte anders gelaufen, wenn du am Start mehr gewusst hättest?
+   - Recommendations für zukünftige Optimierungen?"
+- Researcher: Schreibt `Phase8-Researcher-Summary.md`
+- Orchestrator: Aggregiert zu `Phase8-Enhancement-Summary.md`
+- Final template: `chat_template_cline_optimized-vN.jinja` (validated)
+- Decision table: Which changes stuck? Which regressed? Why?
+
+**Design Principles**:
+1. **Small Orchestrator Context**: Only reads/writes small MD files, no code review, no implementation
+2. **Fresh Programmer Agents**: Each gets full capacity for focus, no accumulated context bloat
+3. **Explicit Handoff**: Each iteration → one MD summary that guides the next
+4. **Incremental Validation**: No "phase complete" until metrics plateau or regressions exceed budget
+5. **Reversibility**: All iterations tracked; easy to revert to v1 if needed
+
+**Deliverables**:
+- [ ] `Phase8-Jinja-Possibilities.md` — Research findings + checklist
+- [ ] `Phase8-Iteration-[1..N]-Report.md` — Each programmer's work
+- [ ] `Phase8-Lessons-Learned-[1..N].md` — Orchestrator analysis per iteration
+- [ ] `Phase8-Enhancement-Summary.md` — Final consolidated report
+- [ ] `chat_template_cline_optimized-vN.jinja` — Final validated template
+- [ ] `Phase8-Decision-Matrix.md` — Which changes stuck, rationale
+
+**Success Criteria**:
+- At least 1 measurable improvement (e.g., +5% TC pass rate, reduced artifact count, latency -10ms)
+- Or: Confirm v1 is optimal (no improvements found after N iterations)
+- Zero regressions from v1 baseline in final template
+
+**Output**: Phase 8 complete → Production-ready, multi-model validated template with full audit trail
+
+---
+
 ## Checklist (Master)
 
 - [x] **Phase 1**: Collect all template sources
@@ -149,8 +306,8 @@
 - [x] **Phase 5**: Test execution & template refinement (5/5 PASS)
 - [x] **Phase 6**: Refinement — Cleanup, Test Extension (9/9 PASS)
 - [x] **Phase 6.5**: Audit & Gap Analysis (COMPLETE)
-- [ ] **Phase 7**: Template Refinement & Re-Testing (PENDING)
-- [ ] **Phase 8**: Documentation & Justification (PENDING)
+- [x] **Phase 7**: Template Refinement & Re-Testing (COMPLETE — tojson + prompting, model limitation identified)
+- [ ] **Phase 8**: Continuous Enhancement — Multi-Agent Orchestration Loop (READY TO START)
 
 ---
 

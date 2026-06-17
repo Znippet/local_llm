@@ -11,12 +11,12 @@
       }
     }
   ],
-  "created": 1781686952,
+  "created": 1781692431,
   "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
   "object": "chat.completion",
   "usage": {
-    "prompt_tokens": 515,
+    "prompt_tokens": 649,
     "completion_tokens": 9,
-    "total_tokens": 524
+    "total_tokens": 658
   }
 }

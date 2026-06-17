@@ -5,11 +5,11 @@
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "I need to use the `list_directory_tree` tool to show the structure of the C:\\LLM directory with a maximum depth of 2. Let me prepare the tool call.\n",
+        "content": "",
         "role": "assistant",
         "tool_calls": [
           {
-            "id": "VKBk6xQvI",
+            "id": "G3sS9ViWY",
             "type": "function",
             "function": {
               "name": "list_directory_tree",
@@ -20,12 +20,12 @@
       }
     }
   ],
-  "created": 1781686912,
+  "created": 1781691752,
   "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
   "object": "chat.completion",
   "usage": {
-    "prompt_tokens": 966,
-    "completion_tokens": 72,
-    "total_tokens": 1038
+    "prompt_tokens": 854,
+    "completion_tokens": 35,
+    "total_tokens": 889
   }
 }

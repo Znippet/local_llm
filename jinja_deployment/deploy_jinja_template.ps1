@@ -2,7 +2,7 @@ param(
     [ValidateSet("v1.0", "v2.0")]
     [string]$Version = "v1.0",
     [string]$OVMSModelDir = "C:\LLM\models\OpenVINO\Qwen3-Coder-30B-A3B-Instruct-int4-ov",
-    [switch]$RestartOVMS = $false
+    [bool]$RestartOVMS = $false
 )
 
 <#
@@ -42,7 +42,9 @@ if (-not (Test-Path $TemplateSource)) {
 }
 
 if (-not (Test-Path $OVMSModelDir)) {
-    Write-Host "❌ OVMS Model-Dir not found: $OVMSModelDir" -ForegroundColor Red
+    Write-Host "❌ OVMS Model-Dir not found" -ForegroundColor Red
+    Write-Host "   Expected: $OVMSModelDir" -ForegroundColor Red
+    Write-Host "   Check if path exists or adjust -OVMSModelDir parameter" -ForegroundColor Red
     exit 1
 }
 

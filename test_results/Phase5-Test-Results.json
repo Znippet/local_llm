@@ -51,8 +51,13 @@
   },
   {
     "tc": 5,
-    "status": "PASS",
-    "errors": [],
+    "status": "FAIL",
+    "errors": [
+      {
+        "type": "insufficient_tools",
+        "message": "Expected 2+ tool calls (write then read), got 1"
+      }
+    ],
     "tool_calls": [
       {
         "name": "write_file",
@@ -60,15 +65,9 @@
           "path": "/tmp/test_data/step.py",
           "content": "print(456)"
         }
-      },
-      {
-        "name": "read_file",
-        "args": {
-          "path": "/tmp/test_data/step.py"
-        }
       }
     ],
     "has_tool_call": true,
-    "tool_call_count": 2
+    "tool_call_count": 1
   }
 ]

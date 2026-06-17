@@ -1,7 +1,7 @@
 [
   {
     "scenario": "read_file nonexistent",
-    "tool_called": "execute_command",
+    "tool_called": "list_files",
     "status": "NO_TOOL_CALL"
   },
   {

@@ -5,11 +5,11 @@
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "I'll search for information about Qwen3-Coder documentation using web search.\n",
+        "content": "",
         "role": "assistant",
         "tool_calls": [
           {
-            "id": "q7OAwihil",
+            "id": "cYrk78jar",
             "type": "function",
             "function": {
               "name": "web_search",
@@ -20,12 +20,12 @@
       }
     }
   ],
-  "created": 1781686905,
+  "created": 1781691748,
   "model": "qwen3-coder-30b-a3b-instruct-int4-ov",
   "object": "chat.completion",
   "usage": {
-    "prompt_tokens": 961,
-    "completion_tokens": 41,
-    "total_tokens": 1002
+    "prompt_tokens": 849,
+    "completion_tokens": 27,
+    "total_tokens": 876
   }
 }
